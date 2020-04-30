@@ -6,7 +6,9 @@
   "scripts": {
     "test": "nyc --exclude-after-remap=false --check-coverage --reporter=html --report-dir=reports/coverage --lines 85 --functions 90 --branches 60 npm run mocha",
     "mocha": "mocha \"test/helpers/**/*.js\" \"test/unit/**/*.js\" \"test/integration/**/*.js\"",
-    "stryker": "node ../core/bin/stryker run"
+    "stryker": "node ../core/bin/stryker run",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -40,7 +42,8 @@
     "@babel/parser": "~7.8.3",
     "@babel/traverse": "~7.8.3",
     "@stryker-mutator/api": "^2.5.0",
-    "tslib": "~1.10.0"
+    "tslib": "~1.10.0",
+    "snyk": "^1.316.1"
   },
   "peerDependencies": {
     "@stryker-mutator/core": "^2.0.0"
@@ -52,5 +55,6 @@
     "@types/babel__generator": "^7.0.0",
     "@types/babel__traverse": "^7.0.0",
     "@types/lodash.clonedeep": "^4.5.6"
-  }
+  },
+  "snyk": true
 }
