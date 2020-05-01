@@ -7,7 +7,9 @@
     "start": "tsc -w",
     "test": "nyc --exclude-after-remap=false --check-coverage --reporter=html --report-dir=reports/coverage --lines 80 --functions 80 --branches 75 npm run mocha",
     "mocha": "mocha \"test/helpers/**/*.js\" \"test/unit/**/*.js\" && mocha --timeout 60000 \"test/helpers/**/*.js\" \"test/integration/**/*.js\"",
-    "stryker": "node bin/stryker run"
+    "stryker": "node bin/stryker run",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -74,7 +76,8 @@
     "tree-kill": "~1.2.0",
     "tslib": "~1.10.0",
     "typed-inject": "~2.1.1",
-    "typed-rest-client": "~1.7.1"
+    "typed-rest-client": "~1.7.1",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "@stryker-mutator/api": "^0.24.1",
@@ -86,5 +89,6 @@
     "@types/node": "~10.17.13",
     "@types/progress": "~2.0.1",
     "flatted": "^2.0.0"
-  }
+  },
+  "snyk": true
 }
