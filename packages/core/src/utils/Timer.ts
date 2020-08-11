@@ -17,7 +17,7 @@ export default class Timer {
 
   public humanReadableElapsed() {
     const elapsedSeconds = this.elapsedSeconds();
-    return Timer.humanReadableElapsedMinutes(elapsedSeconds) + ' ' + Timer.humanReadableElapsedSeconds(elapsedSeconds);
+    return Timer.humanReadableElapsedMinutes(elapsedSeconds) + Timer.humanReadableElapsedSeconds(elapsedSeconds);
   }
 
   public elapsedSeconds() {
@@ -52,6 +52,8 @@ export default class Timer {
   }
 
   private static formatTime(word: 'minute' | 'second', elapsed: number) {
-    return `${elapsed} ${word + (elapsed === 1 ? '' : 's')}`;
+    const s = elapsed === 1 ? '' : 's';
+    const blank = word === 'minute' ? ' ' : '';
+    return `${elapsed} ${word}${s}${blank}`;
   }
 }
