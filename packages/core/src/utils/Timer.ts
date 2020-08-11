@@ -17,7 +17,7 @@ export default class Timer {
 
   public humanReadableElapsed() {
     const elapsedSeconds = this.elapsedSeconds();
-    return Timer.humanReadableElapsedMinutes(elapsedSeconds) + Timer.humanReadableElapsedSeconds(elapsedSeconds);
+    return Timer.humanReadableElapsedMinutes(elapsedSeconds) + ' ' + Timer.humanReadableElapsedSeconds(elapsedSeconds);
   }
 
   public elapsedSeconds() {
