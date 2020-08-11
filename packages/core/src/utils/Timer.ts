@@ -39,21 +39,19 @@ export default class Timer {
 
   private static humanReadableElapsedSeconds(elapsedSeconds: number) {
     const restSeconds = elapsedSeconds % 60;
-    if (restSeconds === 1) {
-      return `${restSeconds} second`;
-    } else {
-      return `${restSeconds} seconds`;
-    }
+    return this.formatTime('second', restSeconds);
   }
 
   private static humanReadableElapsedMinutes(elapsedSeconds: number) {
     const elapsedMinutes = Math.floor(elapsedSeconds / 60);
-    if (elapsedMinutes > 1) {
-      return `${elapsedMinutes} minutes `;
-    } else if (elapsedMinutes > 0) {
-      return `${elapsedMinutes} minute `;
-    } else {
+    if (elapsedMinutes === 0) {
       return '';
+    } else {
+      return this.formatTime('minute', elapsedMinutes);
     }
+  }
+
+  private static formatTime(word: 'minute' | 'second', elapsed: number) {
+    return `${elapsed} ${word + (elapsed === 1 ? '' : 's')}`;
   }
 }
