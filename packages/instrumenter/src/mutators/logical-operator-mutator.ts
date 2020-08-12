@@ -5,21 +5,22 @@ import { NodeMutation } from '../mutant';
 
 import { NodeMutator } from '.';
 
+interface LogicalOperator {
+  '&&': '||';
+  '||': '&&';
+}
+
 export class LogicalOperatorMutator implements NodeMutator {
   public name = 'LogicalOperator';
 
-  private readonly operators: { [targetedOperator: string]: '||' | '&&' } = {
+  private readonly operators: LogicalOperator = {
     '&&': '||',
     '||': '&&',
   };
 
   public mutate(path: NodePath): NodeMutation[] {
-    if (path.isLogicalExpression()) {
+    if (path.isLogicalExpression() && this.isSupported(path.node.operator)) {
       const mutatedOperator = this.operators[path.node.operator];
-
-      if (!mutatedOperator) {
-        return [];
-      }
 
       const replacement = types.cloneNode(path.node, false);
       replacement.operator = mutatedOperator;
@@ -27,5 +28,9 @@ export class LogicalOperatorMutator implements NodeMutator {
     }
 
     return [];
+  }
+
+  private isSupported(operator: string): operator is keyof LogicalOperator {
+    return Object.keys(this.operators).includes(operator);
   }
 }

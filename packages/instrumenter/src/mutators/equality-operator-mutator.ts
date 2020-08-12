@@ -4,8 +4,19 @@ import { NodeMutation } from '../mutant';
 
 import { NodeMutator } from './node-mutator';
 
+interface EqualityOperator {
+  '<': ['<=', '>='];
+  '<=': ['<', '>'];
+  '>': ['>=', '<='];
+  '>=': ['>', '<'];
+  '==': ['!='];
+  '!=': ['=='];
+  '===': ['!=='];
+  '!==': ['==='];
+}
+
 export class EqualityOperatorMutator implements NodeMutator {
-  private readonly operators: { [targetedOperator: string]: BinaryOperator[] } = {
+  private readonly operators: EqualityOperator = {
     '<': ['<=', '>='],
     '<=': ['<', '>'],
     '>': ['>=', '<='],
@@ -19,8 +30,8 @@ export class EqualityOperatorMutator implements NodeMutator {
   public name = 'EqualityOperator';
 
   public mutate(path: NodePath): NodeMutation[] {
-    if (path.isBinaryExpression()) {
-      const mutatedOperators = this.operators[path.node.operator] ?? [];
+    if (path.isBinaryExpression() && this.isSupported(path.node.operator)) {
+      const mutatedOperators: BinaryOperator[] = this.operators[path.node.operator];
 
       return mutatedOperators.map((mutatedOperator) => {
         const replacement = types.cloneNode(path.node, false) as types.BinaryExpression;
@@ -34,5 +45,9 @@ export class EqualityOperatorMutator implements NodeMutator {
     }
 
     return [];
+  }
+
+  private isSupported(operator: string): operator is keyof EqualityOperator {
+    return Object.keys(this.operators).includes(operator);
   }
 }
