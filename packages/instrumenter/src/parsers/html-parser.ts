@@ -2,7 +2,7 @@ import type { Element } from 'angular-html-parser/lib/compiler/src/ml_parser/ast
 import type { ParseLocation } from 'angular-html-parser/lib/compiler/src/parse_util';
 
 import { offsetLocations } from '../util/syntax-helpers';
-import { HtmlAst, AstFormat, HtmlRootNode, TSAst, JSAst, ScriptFormat, AstByFormat } from '../syntax';
+import { HtmlAst, AstFormat, HtmlRootNode, TSAst, JSAst, ScriptFormat } from '../syntax';
 
 import { ParserContext } from './parser-context';
 import { ParseError } from './parse-error';
@@ -39,7 +39,7 @@ async function ngHtmlParser(text: string, fileName: string, parserContext: Parse
   if (errors.length !== 0) {
     throw new ParseError(errors[0].msg, fileName, toSourceLocation(errors[0].span.start));
   }
-  const scriptsAsPromised: Array<Promise<JSAst | TSAst>> = [];
+  const scriptsAsPromised: Array<Promise<JSAst | TSAst | undefined>> = [];
   visitAll(
     new (class extends RecursiveVisitor {
       public visitElement(el: Element, context: unknown): void {
@@ -52,22 +52,25 @@ async function ngHtmlParser(text: string, fileName: string, parserContext: Parse
     })(),
     rootNodes
   );
-  const scripts = await Promise.all(scriptsAsPromised);
+  const scripts = (await Promise.all(scriptsAsPromised)).filter((script) => script !== undefined) as Array<JSAst | TSAst>;
   const root: HtmlRootNode = {
     scripts,
   };
 
   return root;
 
-  async function parseScript<T extends ScriptFormat>(el: Element, scriptFormat: T): Promise<AstByFormat[T]> {
+  async function parseScript<T extends ScriptFormat>(el: Element, scriptFormat: T) {
     const content = text.substring(el.startSourceSpan!.end.offset, el.endSourceSpan!.start.offset);
     const ast = await parserContext.parse(content, fileName, scriptFormat);
-    const offset = el.startSourceSpan!.end;
-    offsetLocations(ast.root, {
-      position: offset.offset,
-      column: offset.col,
-      line: offset.line + 1, // need to add 1, since ngHtmlParser lines start with 0
-    });
+    if (ast) {
+      const offset = el.startSourceSpan!.end;
+      offsetLocations(ast.root, {
+        position: offset.offset,
+        column: offset.col,
+        line: offset.line + 1, // need to add 1, since ngHtmlParser lines start with 0
+      });
+    }
+
     return ast;
   }
 }
