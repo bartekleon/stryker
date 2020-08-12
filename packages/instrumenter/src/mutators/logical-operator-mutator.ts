@@ -17,6 +17,10 @@ export class LogicalOperatorMutator implements NodeMutator {
     if (path.isLogicalExpression()) {
       const mutatedOperator = this.operators[path.node.operator];
 
+      if (!mutatedOperator) {
+        return [];
+      }
+
       const replacement = types.cloneNode(path.node, false);
       replacement.operator = mutatedOperator;
       return [{ original: path.node, replacement }];
