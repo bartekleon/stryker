@@ -10,14 +10,11 @@ export class ConditionalExpressionMutator implements NodeMutator {
   public name = 'ConditionalExpression';
 
   private hasValidParent(node: NodePath): boolean {
-    return (
-      !node.parent ||
-      !(
-        types.isForStatement(node.parent) ||
-        types.isWhileStatement(node.parent) ||
-        types.isIfStatement(node.parent) ||
-        types.isDoWhileStatement(node.parent)
-      )
+    return !(
+      types.isForStatement(node.parent) ||
+      types.isWhileStatement(node.parent) ||
+      types.isIfStatement(node.parent) ||
+      types.isDoWhileStatement(node.parent)
     );
   }
 

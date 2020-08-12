@@ -2,7 +2,7 @@ export default class Timer {
   private readonly now: () => Date;
   private start: Date;
   private markers: {
-    [name: string]: Date;
+    [name: string]: Date | undefined;
   };
 
   constructor(now = () => new Date()) {
@@ -26,8 +26,9 @@ export default class Timer {
   }
 
   public elapsedMs(sinceMarker?: string) {
-    if (sinceMarker && this.markers[sinceMarker]) {
-      return this.now().getTime() - this.markers[sinceMarker].getTime();
+    const marker = sinceMarker && this.markers[sinceMarker];
+    if (marker) {
+      return this.now().getTime() - marker.getTime();
     } else {
       return this.now().getTime() - this.start.getTime();
     }

@@ -14,7 +14,7 @@ export class UpdateOperatorMutator implements NodeMutator {
   };
 
   public mutate(path: NodePath): NodeMutation[] {
-    return path.isUpdateExpression() && this.operators[path.node.operator] !== undefined
+    return path.isUpdateExpression()
       ? [
           {
             original: path.node,

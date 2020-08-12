@@ -62,14 +62,12 @@ async function ngHtmlParser(text: string, fileName: string, parserContext: Parse
   async function parseScript<T extends ScriptFormat>(el: Element, scriptFormat: T): Promise<AstByFormat[T]> {
     const content = text.substring(el.startSourceSpan!.end.offset, el.endSourceSpan!.start.offset);
     const ast = await parserContext.parse(content, fileName, scriptFormat);
-    if (ast) {
-      const offset = el.startSourceSpan!.end;
-      offsetLocations(ast.root, {
-        position: offset.offset,
-        column: offset.col,
-        line: offset.line + 1, // need to add 1, since ngHtmlParser lines start with 0
-      });
-    }
+    const offset = el.startSourceSpan!.end;
+    offsetLocations(ast.root, {
+      position: offset.offset,
+      column: offset.col,
+      line: offset.line + 1, // need to add 1, since ngHtmlParser lines start with 0
+    });
     return ast;
   }
 }

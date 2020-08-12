@@ -12,7 +12,7 @@ export class ArrayDeclarationMutator implements NodeMutator {
       const replacement = path.node.elements.length ? types.arrayExpression() : types.arrayExpression([types.stringLiteral('Stryker was here')]);
       return [{ original: path.node, replacement }];
     } else if ((path.isCallExpression() || path.isNewExpression()) && types.isIdentifier(path.node.callee) && path.node.callee.name === 'Array') {
-      const mutatedCallArgs = path.node.arguments && path.node.arguments.length ? [] : [types.arrayExpression()];
+      const mutatedCallArgs = path.node.arguments.length ? [] : [types.arrayExpression()];
       const replacement = types.isNewExpression(path)
         ? types.newExpression(path.node.callee, mutatedCallArgs)
         : types.callExpression(path.node.callee, mutatedCallArgs);
