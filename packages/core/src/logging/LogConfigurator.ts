@@ -136,7 +136,7 @@ export class LogConfigurator {
 
   public static async shutdown(): Promise<void> {
     return new Promise((_, rej) => {
-      log4js.shutdown(rej);
+      log4js.shutdown((err) => rej(err));
     });
   }
 }
