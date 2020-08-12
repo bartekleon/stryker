@@ -5,13 +5,15 @@ import { NodeMutation } from '../mutant';
 
 import { NodeMutator } from '.';
 
+enum UpdateOperators {
+  '++' = '--',
+  '--' = '++',
+}
+
 export class UpdateOperatorMutator implements NodeMutator {
   public name = 'UpdateOperator';
 
-  private readonly operators: { [targetedOperator: string]: '--' | '++' } = {
-    '++': '--',
-    '--': '++',
-  };
+  private readonly operators = UpdateOperators;
 
   public mutate(path: NodePath): NodeMutation[] {
     return path.isUpdateExpression()

@@ -4,19 +4,19 @@ import { NodeMutation } from '../mutant';
 
 import { NodeMutator } from './node-mutator';
 
-interface EqualityOperator {
-  '<': ['<=', '>='];
-  '<=': ['<', '>'];
-  '>': ['>=', '<='];
-  '>=': ['>', '<'];
-  '==': ['!='];
-  '!=': ['=='];
-  '===': ['!=='];
-  '!==': ['==='];
+const enum EqualityOperators {
+  '<',
+  '<=',
+  '>',
+  '>=',
+  '==',
+  '!=',
+  '===',
+  '!==',
 }
 
 export class EqualityOperatorMutator implements NodeMutator {
-  private readonly operators: EqualityOperator = {
+  private readonly operators = {
     '<': ['<=', '>='],
     '<=': ['<', '>'],
     '>': ['>=', '<='],
@@ -47,7 +47,7 @@ export class EqualityOperatorMutator implements NodeMutator {
     return [];
   }
 
-  private isSupported(operator: string): operator is keyof EqualityOperator {
+  private isSupported(operator: string): operator is keyof EqualityOperators {
     return Object.keys(this.operators).includes(operator);
   }
 }

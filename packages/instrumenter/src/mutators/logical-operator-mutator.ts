@@ -5,18 +5,15 @@ import { NodeMutation } from '../mutant';
 
 import { NodeMutator } from '.';
 
-interface LogicalOperator {
-  '&&': '||';
-  '||': '&&';
+enum LogicalOperators {
+  '&&' = '||',
+  '||' = '&&',
 }
 
 export class LogicalOperatorMutator implements NodeMutator {
   public name = 'LogicalOperator';
 
-  private readonly operators: LogicalOperator = {
-    '&&': '||',
-    '||': '&&',
-  };
+  private readonly operators = LogicalOperators;
 
   public mutate(path: NodePath): NodeMutation[] {
     if (path.isLogicalExpression() && this.isSupported(path.node.operator)) {
@@ -30,7 +27,7 @@ export class LogicalOperatorMutator implements NodeMutator {
     return [];
   }
 
-  private isSupported(operator: string): operator is keyof LogicalOperator {
+  private isSupported(operator: string): operator is keyof typeof LogicalOperators {
     return Object.keys(this.operators).includes(operator);
   }
 }
