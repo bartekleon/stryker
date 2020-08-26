@@ -1,5 +1,5 @@
 const path = require('path');
-const settings = require('../../stryker.parent.conf');
+const settings = require('../../stryker.conf');
 const moduleName = __dirname.split(path.sep).pop();
 settings.dashboard.module = moduleName;
 module.exports = settings;
