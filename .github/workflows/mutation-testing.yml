@@ -18,7 +18,7 @@ jobs:
       - name: Run Stryker
         run: npx lerna run --scope "@stryker-mutator/core" --concurrency 1 --stream stryker
         env:
-          STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
+          STRYKER_DASHBOARD_API_KEY: be000413-1aae-4c5a-88ba-596644576b54
 
   plugins-1:
     runs-on: ubuntu-latest
@@ -35,7 +35,7 @@ jobs:
       - name: Run Stryker
         run: npx lerna run --scope "@stryker-mutator/{api,babel-transpiler,jasmine-framework,javascript-mutator}" --concurrency 1 --stream stryker
         env:
-          STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
+          STRYKER_DASHBOARD_API_KEY: be000413-1aae-4c5a-88ba-596644576b54
 
   plugins-2:
     runs-on: ubuntu-latest
@@ -52,7 +52,7 @@ jobs:
       - name: Run Stryker
         run: npx lerna run --scope "@stryker-mutator/{jasmine-runner,jest-runner,karma-runner,mocha-framework,mocha-runner}" --concurrency 1 --stream stryker
         env:
-          STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
+          STRYKER_DASHBOARD_API_KEY: be000413-1aae-4c5a-88ba-596644576b54
 
   plugins-3:
     runs-on: ubuntu-latest
@@ -69,4 +69,4 @@ jobs:
       - name: Run Stryker
         run: npx lerna run --scope "@stryker-mutator/{typescript,vue-mutator,webpack-transpiler,wct-runner,util}" --concurrency 1 --stream stryker
         env:
-          STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
+          STRYKER_DASHBOARD_API_KEY: be000413-1aae-4c5a-88ba-596644576b54
