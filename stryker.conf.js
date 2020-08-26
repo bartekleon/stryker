@@ -1,3 +1,6 @@
+/**
+ * @type {import('@stryker-mutator/api/core').StrykerOptions}
+ */
 module.exports = {
   mutate: ['src/**/*.ts'],
   coverageAnalysis: 'perTest',
@@ -18,4 +21,3 @@ module.exports = {
     'typings/**/*.ts',
   ]
 };
-
