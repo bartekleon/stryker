@@ -1,11 +1,7 @@
 name: mutation testing
 
 on:
-  push:
-    branches:
-      - master
-      - test/**
-      - epic/**
+  push: ~
 
 jobs:
   core:
