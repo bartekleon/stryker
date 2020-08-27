@@ -1,12 +1,11 @@
-import * as commander from 'commander';
 import { DashboardOptions, ALL_REPORT_TYPES, PartialStrykerOptions } from '@stryker-mutator/api/core';
-
 import { MutantResult } from '@stryker-mutator/api/report';
+import * as commander from 'commander';
 
+import { defaultOptions } from './config/OptionsValidator';
 import { initializerFactory } from './initializer';
 import { LogConfigurator } from './logging';
 import Stryker from './Stryker';
-import { defaultOptions } from './config/OptionsValidator';
 
 /**
  * Interpret a command line argument and add it to an object.

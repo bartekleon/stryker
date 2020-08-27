@@ -1,11 +1,11 @@
 import * as path from 'path';
 
-import { testInjector, factory, assertions } from '@stryker-mutator/test-helpers';
 import { TestResult, CompleteDryRunResult, TestStatus } from '@stryker-mutator/api/test_runner2';
+import { testInjector, factory, assertions } from '@stryker-mutator/test-helpers';
 import { expect } from 'chai';
 
-import { createMochaOptions } from '../helpers/factories';
 import { createMochaTestRunner, MochaTestRunner } from '../../src';
+import { createMochaOptions } from '../helpers/factories';
 
 const countTests = (runResult: CompleteDryRunResult, predicate: (result: TestResult) => boolean) => runResult.tests.filter(predicate).length;
 

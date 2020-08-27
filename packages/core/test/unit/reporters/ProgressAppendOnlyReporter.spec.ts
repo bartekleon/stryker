@@ -1,10 +1,9 @@
 import * as os from 'os';
 
+import { factory } from '@stryker-mutator/test-helpers';
 import { matchedMutant } from '@stryker-mutator/test-helpers/src/factory';
 import { expect } from 'chai';
 import * as sinon from 'sinon';
-
-import { factory } from '@stryker-mutator/test-helpers';
 
 import ProgressAppendOnlyReporter from '../../../src/reporters/ProgressAppendOnlyReporter';
 

@@ -1,9 +1,9 @@
 import os = require('os');
 
-import sinon = require('sinon');
 import { strykerCoreSchema, StrykerOptions } from '@stryker-mutator/api/core';
 import { testInjector, factory } from '@stryker-mutator/test-helpers';
 import { expect } from 'chai';
+import sinon = require('sinon');
 
 import { OptionsValidator, validateOptions, markUnknownOptions } from '../../../src/config/OptionsValidator';
 import { coreTokens } from '../../../src/di';

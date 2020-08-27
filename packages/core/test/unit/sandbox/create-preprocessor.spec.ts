@@ -1,7 +1,7 @@
 import path = require('path');
 
-import { testInjector, assertions } from '@stryker-mutator/test-helpers';
 import { File } from '@stryker-mutator/api/core';
+import { testInjector, assertions } from '@stryker-mutator/test-helpers';
 
 import { FilePreprocessor, createPreprocessor } from '../../../src/sandbox';
 

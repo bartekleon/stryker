@@ -1,14 +1,13 @@
 import { Checker, CheckResult, CheckStatus } from '@stryker-mutator/api/check';
 import { Mutant, StrykerOptions } from '@stryker-mutator/api/core';
 
-import { tokens, Disposable } from 'typed-inject';
 import { commonTokens } from '@stryker-mutator/api/plugin';
+import { tokens, Disposable } from 'typed-inject';
 
 import ChildProcessProxy from '../child-proxy/ChildProcessProxy';
-import { LoggingClientContext } from '../logging';
-import { coreTokens } from '../di';
-
 import { Worker } from '../concurrent/pool';
+import { coreTokens } from '../di';
+import { LoggingClientContext } from '../logging';
 
 import { CheckerWorker } from './CheckerWorker';
 

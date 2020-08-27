@@ -1,15 +1,15 @@
-import { TestRunner2 } from '@stryker-mutator/api/test_runner2';
 import { StrykerOptions } from '@stryker-mutator/api/core';
 import { tokens, commonTokens } from '@stryker-mutator/api/plugin';
+import { TestRunner2 } from '@stryker-mutator/api/test_runner2';
 
-import { LoggingClientContext } from '../logging';
 import { coreTokens } from '../di';
+import { LoggingClientContext } from '../logging';
 import { Sandbox } from '../sandbox/sandbox';
 
-import RetryDecorator from './RetryDecorator';
-import TimeoutDecorator from './TimeoutDecorator';
 import ChildProcessTestRunnerDecorator from './ChildProcessTestRunnerDecorator';
 import CommandTestRunner from './CommandTestRunner';
+import RetryDecorator from './RetryDecorator';
+import TimeoutDecorator from './TimeoutDecorator';
 
 createTestRunnerFactory.inject = tokens(commonTokens.options, coreTokens.sandbox, coreTokens.loggingContext);
 export function createTestRunnerFactory(

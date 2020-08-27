@@ -1,6 +1,6 @@
 import { types, traverse, NodePath, parseSync } from '@babel/core';
-import { expect } from 'chai';
 import generate from '@babel/generator';
+import { expect } from 'chai';
 
 export type AstExpectation = (nodePath: NodePath) => boolean;
 

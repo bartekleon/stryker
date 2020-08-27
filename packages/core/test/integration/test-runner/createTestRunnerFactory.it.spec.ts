@@ -1,17 +1,15 @@
 import { LogLevel } from '@stryker-mutator/api/core';
+import { TestRunner2, DryRunStatus } from '@stryker-mutator/api/test_runner2';
+import { LoggingServer, testInjector, factory } from '@stryker-mutator/test-helpers';
+import { expectCompleted, expectErrored } from '@stryker-mutator/test-helpers/src/assertions';
 import { expect } from 'chai';
 import * as log4js from 'log4js';
 import { toArray } from 'rxjs/operators';
-import { LoggingServer, testInjector, factory } from '@stryker-mutator/test-helpers';
 
-import { TestRunner2, DryRunStatus } from '@stryker-mutator/api/test_runner2';
-
-import { expectCompleted, expectErrored } from '@stryker-mutator/test-helpers/src/assertions';
-
+import { coreTokens } from '../../../src/di';
 import { LoggingClientContext } from '../../../src/logging';
 import { createTestRunnerFactory } from '../../../src/test-runner';
 import { sleep } from '../../helpers/testUtils';
-import { coreTokens } from '../../../src/di';
 
 describe(`${createTestRunnerFactory.name} integration`, () => {
   let createSut: () => Required<TestRunner2>;

@@ -1,6 +1,6 @@
+import { createReadStream, createWriteStream, promises as fs } from 'fs';
 import * as path from 'path';
 import { promisify } from 'util';
-import { createReadStream, createWriteStream, promises as fs } from 'fs';
 
 import mkdirp = require('mkdirp');
 import * as rimraf from 'rimraf';

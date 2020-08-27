@@ -19,7 +19,6 @@ export function createAssertionResult(overrides?: Partial<AssertionResult>): Ass
     status: 'passed',
     title: 'should be bar',
     duration: 25,
-    failureDetails: [],
     ...overrides,
   };
 }

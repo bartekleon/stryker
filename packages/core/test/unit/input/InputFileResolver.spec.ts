@@ -1,6 +1,6 @@
+import * as fs from 'fs';
 import * as os from 'os';
 import * as path from 'path';
-import * as fs from 'fs';
 
 import { File } from '@stryker-mutator/api/core';
 import { SourceFile } from '@stryker-mutator/api/report';

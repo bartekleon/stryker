@@ -1,4 +1,4 @@
-import sinon = require('sinon');
+import { CheckStatus } from '@stryker-mutator/api/check';
 import { File, Location, Range } from '@stryker-mutator/api/core';
 import {
   MutantResult,
@@ -10,10 +10,10 @@ import {
   KilledMutantResult,
   TimeoutMutantResult,
 } from '@stryker-mutator/api/report';
+import { CompleteDryRunResult } from '@stryker-mutator/api/test_runner2';
 import { factory, testInjector } from '@stryker-mutator/test-helpers';
 import { expect } from 'chai';
-import { CompleteDryRunResult } from '@stryker-mutator/api/test_runner2';
-import { CheckStatus } from '@stryker-mutator/api/check';
+import sinon = require('sinon');
 
 import { coreTokens } from '../../../src/di';
 import InputFileCollection from '../../../src/input/InputFileCollection';

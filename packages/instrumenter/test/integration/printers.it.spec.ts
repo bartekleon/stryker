@@ -1,5 +1,5 @@
-import path from 'path';
 import { promises as fs } from 'fs';
+import path from 'path';
 
 import { normalizeWhitespaces } from '@stryker-mutator/util';
 import { expect } from 'chai';

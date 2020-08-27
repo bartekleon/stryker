@@ -1,16 +1,16 @@
+import { StrykerOptions, PartialStrykerOptions } from '@stryker-mutator/api/core';
 import { commonTokens, PluginKind } from '@stryker-mutator/api/plugin';
 import { Reporter } from '@stryker-mutator/api/report';
 import { factory } from '@stryker-mutator/test-helpers';
 import { expect } from 'chai';
 import * as sinon from 'sinon';
-import { StrykerOptions, PartialStrykerOptions } from '@stryker-mutator/api/core';
 import { createInjector } from 'typed-inject';
 
-import * as optionsValidatorModule from '../../../src/config/OptionsValidator';
-import * as pluginLoaderModule from '../../../src/di/PluginLoader';
 import ConfigReader, * as configReaderModule from '../../../src/config/ConfigReader';
+import * as optionsValidatorModule from '../../../src/config/OptionsValidator';
 import { PluginCreator, PluginLoader, coreTokens, provideLogger } from '../../../src/di';
 import { buildMainInjector, CliOptionsProvider } from '../../../src/di/buildMainInjector';
+import * as pluginLoaderModule from '../../../src/di/PluginLoader';
 import * as broadcastReporterModule from '../../../src/reporters/BroadcastReporter';
 import currentLogMock from '../../helpers/logMock';
 

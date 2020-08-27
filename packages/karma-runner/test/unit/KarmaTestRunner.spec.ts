@@ -8,12 +8,12 @@ import { expect } from 'chai';
 import * as karma from 'karma';
 import * as sinon from 'sinon';
 
-import strykerKarmaConf = require('../../src/starters/stryker-karma.conf');
-import KarmaTestRunner from '../../src/KarmaTestRunner';
-import ProjectStarter, * as projectStarterModule from '../../src/starters/ProjectStarter';
 import { StrykerKarmaSetup, NgConfigOptions } from '../../src-generated/karma-runner-options';
 import StrykerReporter from '../../src/karma-plugins/StrykerReporter';
 import TestHooksMiddleware from '../../src/karma-plugins/TestHooksMiddleware';
+import KarmaTestRunner from '../../src/KarmaTestRunner';
+import ProjectStarter, * as projectStarterModule from '../../src/starters/ProjectStarter';
+import strykerKarmaConf = require('../../src/starters/stryker-karma.conf');
 
 describe(KarmaTestRunner.name, () => {
   let projectStarterMock: sinon.SinonStubbedInstance<ProjectStarter>;

@@ -3,8 +3,8 @@ import * as path from 'path';
 import { testInjector, factory, assertions } from '@stryker-mutator/test-helpers';
 import { expect } from 'chai';
 
-import { createMochaOptions } from '../helpers/factories';
 import { createMochaTestRunner } from '../../src';
+import { createMochaOptions } from '../helpers/factories';
 
 describe('QUnit sample', () => {
   function createSut() {

@@ -1,13 +1,13 @@
 import fs = require('fs');
 import path from 'path';
 
+import { Config } from '@jest/types';
+import { StrykerOptions } from '@stryker-mutator/api/core';
 import { Logger } from '@stryker-mutator/api/logging';
 import { tokens, commonTokens } from '@stryker-mutator/api/plugin';
-import { StrykerOptions } from '@stryker-mutator/api/core';
-import { Config } from '@jest/types';
 
-import { loaderToken, projectRootToken } from '../pluginTokens';
 import { JestRunnerOptionsWithStrykerOptions } from '../JestRunnerOptionsWithStrykerOptions';
+import { loaderToken, projectRootToken } from '../pluginTokens';
 
 import JestConfigLoader from './JestConfigLoader';
 import { NodeRequireFunction } from './NodeRequireFunction';

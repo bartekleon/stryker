@@ -3,9 +3,9 @@ import { NodePath } from '@babel/core';
 
 import { Mutant } from '../mutant';
 
+import { conditionalExpressionMutantPlacer } from './conditional-expression-mutant-placer';
 import { MutantPlacer } from './mutant-placer';
 import { switchCaseMutantPlacer } from './switch-case-mutant-placer';
-import { conditionalExpressionMutantPlacer } from './conditional-expression-mutant-placer';
 
 export const MUTANT_PLACERS = Object.freeze([conditionalExpressionMutantPlacer, switchCaseMutantPlacer]);
 

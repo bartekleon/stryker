@@ -1,11 +1,9 @@
+import { Checker } from '@stryker-mutator/api/check';
+import { TestRunner2 } from '@stryker-mutator/api/test_runner2';
+import { notEmpty } from '@stryker-mutator/util';
 import { Observable, Subject, merge } from 'rxjs';
 import { flatMap, filter, shareReplay } from 'rxjs/operators';
-import { notEmpty } from '@stryker-mutator/util';
 import { tokens } from 'typed-inject';
-
-import { TestRunner2 } from '@stryker-mutator/api/test_runner2';
-
-import { Checker } from '@stryker-mutator/api/check';
 
 import { coreTokens } from '../di';
 

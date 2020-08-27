@@ -1,11 +1,11 @@
 import { Logger } from '@stryker-mutator/api/logging';
-import { errorToString } from '@stryker-mutator/util';
 import { TestRunner2, DryRunOptions, MutantRunOptions, DryRunResult, MutantRunResult } from '@stryker-mutator/api/test_runner2';
-import { expect } from 'chai';
 
 import { factory } from '@stryker-mutator/test-helpers';
 
 import { expectErrored } from '@stryker-mutator/test-helpers/src/assertions';
+import { errorToString } from '@stryker-mutator/util';
+import { expect } from 'chai';
 
 import ChildProcessCrashedError from '../../../src/child-proxy/ChildProcessCrashedError';
 import OutOfMemoryError from '../../../src/child-proxy/OutOfMemoryError';

@@ -1,14 +1,14 @@
+import { Config } from '@jest/types';
+import { commonTokens } from '@stryker-mutator/api/plugin';
 import { testInjector, factory } from '@stryker-mutator/test-helpers';
 import { expect } from 'chai';
 import Sinon, * as sinon from 'sinon';
-import { commonTokens } from '@stryker-mutator/api/plugin';
-import { Config } from '@jest/types';
 
+import { configLoaderFactory } from '../../../src/configLoaders';
 import CustomJestConfigLoader, * as defaultJestConfigLoader from '../../../src/configLoaders/CustomJestConfigLoader';
 import ReactScriptsJestConfigLoader, * as reactScriptsJestConfigLoader from '../../../src/configLoaders/ReactScriptsJestConfigLoader';
 import ReactScriptsTSJestConfigLoader, * as reactScriptsTSJestConfigLoader from '../../../src/configLoaders/ReactScriptsTSJestConfigLoader';
 import { JestRunnerOptionsWithStrykerOptions } from '../../../src/JestRunnerOptionsWithStrykerOptions';
-import { configLoaderFactory } from '../../../src/configLoaders';
 
 describe(configLoaderFactory.name, () => {
   let customConfigLoaderStub: Sinon.SinonStubbedInstance<CustomJestConfigLoader>;

@@ -1,19 +1,19 @@
-import sinon = require('sinon');
-import { expect } from 'chai';
-import { testInjector, factory, tick } from '@stryker-mutator/test-helpers';
+import { Checker, CheckStatus, CheckResult } from '@stryker-mutator/api/check';
 import { Reporter } from '@stryker-mutator/api/report';
 import { TestRunner2, MutantRunStatus, MutantRunOptions, MutantRunResult } from '@stryker-mutator/api/test_runner2';
-import { Checker, CheckStatus, CheckResult } from '@stryker-mutator/api/check';
+import { testInjector, factory, tick } from '@stryker-mutator/test-helpers';
 import { Task } from '@stryker-mutator/util';
+import { expect } from 'chai';
+import sinon = require('sinon');
 
-import { MutationTestExecutor } from '../../../src/process';
-import { coreTokens } from '../../../src/di';
-import { createTestRunnerPoolMock, createMutantTestCoverage, PoolMock, createCheckerPoolMock } from '../../helpers/producers';
-import { MutantTestCoverage } from '../../../src/mutants/findMutantTestCoverage';
-import { MutationTestReportHelper } from '../../../src/reporters/MutationTestReportHelper';
-import Timer from '../../../src/utils/Timer';
 import { ConcurrencyTokenProvider } from '../../../src/concurrent';
+import { coreTokens } from '../../../src/di';
+import { MutantTestCoverage } from '../../../src/mutants/findMutantTestCoverage';
+import { MutationTestExecutor } from '../../../src/process';
+import { MutationTestReportHelper } from '../../../src/reporters/MutationTestReportHelper';
 import { Sandbox } from '../../../src/sandbox';
+import Timer from '../../../src/utils/Timer';
+import { createTestRunnerPoolMock, createMutantTestCoverage, PoolMock, createCheckerPoolMock } from '../../helpers/producers';
 
 describe(MutationTestExecutor.name, () => {
   let reporterMock: Required<Reporter>;

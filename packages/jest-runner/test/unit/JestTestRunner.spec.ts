@@ -1,16 +1,16 @@
+import { Config } from '@jest/types';
+import { INSTRUMENTER_CONSTANTS } from '@stryker-mutator/api/core';
+import { DryRunStatus, TestStatus, CompleteDryRunResult, ErrorDryRunResult } from '@stryker-mutator/api/test_runner2';
 import { testInjector, factory } from '@stryker-mutator/test-helpers';
 import { expect } from 'chai';
 import sinon from 'sinon';
-import { DryRunStatus, TestStatus, CompleteDryRunResult, ErrorDryRunResult } from '@stryker-mutator/api/test_runner2';
-import { INSTRUMENTER_CONSTANTS } from '@stryker-mutator/api/core';
-import { Config } from '@jest/types';
 
-import { JestTestAdapter } from '../../src/jestTestAdapters';
-import JestTestRunner from '../../src/JestTestRunner';
-import * as producers from '../helpers/producers';
-import { processEnvToken, jestTestAdapterToken, configLoaderToken } from '../../src/pluginTokens';
 import JestConfigLoader from '../../src/configLoaders/JestConfigLoader';
 import { JestRunnerOptionsWithStrykerOptions } from '../../src/JestRunnerOptionsWithStrykerOptions';
+import { JestTestAdapter } from '../../src/jestTestAdapters';
+import JestTestRunner from '../../src/JestTestRunner';
+import { processEnvToken, jestTestAdapterToken, configLoaderToken } from '../../src/pluginTokens';
+import * as producers from '../helpers/producers';
 
 describe(JestTestRunner.name, () => {
   const basePath = '/path/to/project/root';

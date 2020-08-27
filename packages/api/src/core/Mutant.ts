@@ -1,5 +1,5 @@
-import Range from './Range';
 import Location from './Location';
+import Range from './Range';
 
 interface Mutant {
   id: number;

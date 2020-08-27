@@ -1,5 +1,5 @@
-import * as path from 'path';
 import { readdirSync } from 'fs';
+import * as path from 'path';
 
 import { Logger } from '@stryker-mutator/api/logging';
 import { commonTokens, Plugin, PluginKind, PluginResolver, Plugins } from '@stryker-mutator/api/plugin';

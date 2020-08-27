@@ -2,9 +2,9 @@ import { I } from '@stryker-mutator/util';
 
 import { AstFormat, AstByFormat, Ast } from '../syntax';
 
-import { MutantCollector } from './mutant-collector';
-import { transformHtml } from './html-transformer';
 import { transformBabel } from './babel-transformer';
+import { transformHtml } from './html-transformer';
+import { MutantCollector } from './mutant-collector';
 
 export { MutantCollector };
 

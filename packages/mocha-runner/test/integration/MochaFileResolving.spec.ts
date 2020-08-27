@@ -1,11 +1,11 @@
 import * as path from 'path';
 
-import { expect } from 'chai';
 import { testInjector } from '@stryker-mutator/test-helpers';
+import { expect } from 'chai';
 
+import { createMochaTestRunner } from '../../src';
 import MochaOptionsLoader from '../../src/MochaOptionsLoader';
 import { MochaRunnerWithStrykerOptions } from '../../src/MochaRunnerWithStrykerOptions';
-import { createMochaTestRunner } from '../../src';
 
 describe('Mocha 6 file resolving integration', () => {
   const cwd = process.cwd();

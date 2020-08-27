@@ -1,8 +1,7 @@
+import { Config } from '@jest/types';
 import { testInjector } from '@stryker-mutator/test-helpers';
 import { expect } from 'chai';
 import sinon from 'sinon';
-
-import { Config } from '@jest/types';
 
 import JestGreaterThan25Adapter from '../../../src/jestTestAdapters/JestGreaterThan25Adapter';
 import { jestWrapper } from '../../../src/utils/jestWrapper';

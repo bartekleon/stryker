@@ -1,12 +1,10 @@
 import { LogLevel, StrykerOptions } from '@stryker-mutator/api/core';
+import { TestRunner2 } from '@stryker-mutator/api/test_runner2';
+import { factory } from '@stryker-mutator/test-helpers';
 import { strykerOptions } from '@stryker-mutator/test-helpers/src/factory';
+import { Task } from '@stryker-mutator/util';
 import { expect } from 'chai';
 import * as sinon from 'sinon';
-import { Task } from '@stryker-mutator/util';
-
-import { TestRunner2 } from '@stryker-mutator/api/test_runner2';
-
-import { factory } from '@stryker-mutator/test-helpers';
 
 import ChildProcessCrashedError from '../../../src/child-proxy/ChildProcessCrashedError';
 import ChildProcessProxy from '../../../src/child-proxy/ChildProcessProxy';

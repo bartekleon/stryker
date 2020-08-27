@@ -1,21 +1,21 @@
-import { Injector } from 'typed-inject';
-import { expect } from 'chai';
-import { testInjector, factory } from '@stryker-mutator/test-helpers';
 import { PartialStrykerOptions, File, LogLevel } from '@stryker-mutator/api/core';
 import { commonTokens } from '@stryker-mutator/api/plugin';
+import { testInjector, factory } from '@stryker-mutator/test-helpers';
+import { expect } from 'chai';
 
 import sinon = require('sinon');
+import { Injector } from 'typed-inject';
 
-import { PrepareExecutor } from '../../../src/process';
 import { coreTokens } from '../../../src/di';
-import { LogConfigurator, LoggingClientContext } from '../../../src/logging';
 import * as buildMainInjectorModule from '../../../src/di/buildMainInjector';
-import Timer from '../../../src/utils/Timer';
-import InputFileResolver from '../../../src/input/InputFileResolver';
-import InputFileCollection from '../../../src/input/InputFileCollection';
 
-import { TemporaryDirectory } from '../../../src/utils/TemporaryDirectory';
 import { ConfigError } from '../../../src/errors';
+import InputFileCollection from '../../../src/input/InputFileCollection';
+import InputFileResolver from '../../../src/input/InputFileResolver';
+import { LogConfigurator, LoggingClientContext } from '../../../src/logging';
+import { PrepareExecutor } from '../../../src/process';
+import { TemporaryDirectory } from '../../../src/utils/TemporaryDirectory';
+import Timer from '../../../src/utils/Timer';
 
 describe(PrepareExecutor.name, () => {
   let cliOptions: PartialStrykerOptions;

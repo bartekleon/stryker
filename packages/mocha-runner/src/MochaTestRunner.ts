@@ -2,8 +2,6 @@ import { StrykerOptions } from '@stryker-mutator/api/core';
 import { Logger } from '@stryker-mutator/api/logging';
 import { commonTokens, tokens } from '@stryker-mutator/api/plugin';
 
-import { I, escapeRegExp, DirectoryRequireCache } from '@stryker-mutator/util';
-
 import {
   TestRunner2,
   DryRunResult,
@@ -14,14 +12,15 @@ import {
   toMutantRunResult,
   CompleteDryRunResult,
 } from '@stryker-mutator/api/test_runner2';
+import { I, escapeRegExp, DirectoryRequireCache } from '@stryker-mutator/util';
 
 import { MochaOptions } from '../src-generated/mocha-runner-options';
 
-import { StrykerMochaReporter } from './StrykerMochaReporter';
+import { MochaAdapter } from './MochaAdapter';
+import MochaOptionsLoader from './MochaOptionsLoader';
 import { MochaRunnerWithStrykerOptions } from './MochaRunnerWithStrykerOptions';
 import * as pluginTokens from './plugin-tokens';
-import MochaOptionsLoader from './MochaOptionsLoader';
-import { MochaAdapter } from './MochaAdapter';
+import { StrykerMochaReporter } from './StrykerMochaReporter';
 
 export class MochaTestRunner implements TestRunner2 {
   public testFileNames: string[];

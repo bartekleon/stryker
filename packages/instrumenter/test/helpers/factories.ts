@@ -1,9 +1,9 @@
 import { types } from '@babel/core';
 
-import { JSAst, AstFormat, HtmlAst, TSAst } from '../../src/syntax';
+import { InstrumenterOptions } from '../../src';
 import { Mutant, NamedNodeMutation } from '../../src/mutant';
 import { ParserOptions } from '../../src/parsers';
-import { InstrumenterOptions } from '../../src';
+import { JSAst, AstFormat, HtmlAst, TSAst } from '../../src/syntax';
 
 import { parseTS, parseJS, findNodePath } from './syntax-test-helpers';
 

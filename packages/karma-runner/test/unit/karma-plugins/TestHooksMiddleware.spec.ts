@@ -1,5 +1,5 @@
-import { expect } from 'chai';
 import { factory } from '@stryker-mutator/test-helpers';
+import { expect } from 'chai';
 import { Request, NextFunction, Response } from 'express';
 
 import sinon = require('sinon');

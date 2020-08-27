@@ -5,8 +5,8 @@ import { File } from '@babel/core';
 
 import { placeMutant } from '../mutant-placers';
 import { mutate } from '../mutators';
-import { declareGlobal, isTypeAnnotation, isImportDeclaration } from '../util/syntax-helpers';
 import { AstFormat } from '../syntax';
+import { declareGlobal, isTypeAnnotation, isImportDeclaration } from '../util/syntax-helpers';
 
 import { AstTransformer } from '.';
 

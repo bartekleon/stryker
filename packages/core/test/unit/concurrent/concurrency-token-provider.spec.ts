@@ -1,9 +1,9 @@
 import os = require('os');
 
-import { expect } from 'chai';
-import sinon = require('sinon');
-import { toArray } from 'rxjs/operators';
 import { testInjector } from '@stryker-mutator/test-helpers';
+import { expect } from 'chai';
+import { toArray } from 'rxjs/operators';
+import sinon = require('sinon');
 
 import { ConcurrencyTokenProvider } from '../../../src/concurrent';
 

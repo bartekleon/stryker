@@ -1,11 +1,11 @@
-import { expect } from 'chai';
 import { types } from '@babel/core';
 import generate from '@babel/generator';
 import { normalizeWhitespaces } from '@stryker-mutator/util';
+import { expect } from 'chai';
 
+import { Mutant } from '../../../src/mutant';
 import { switchCaseMutantPlacer } from '../../../src/mutant-placers/switch-case-mutant-placer';
 import { findNodePath, parseJS } from '../../helpers/syntax-test-helpers';
-import { Mutant } from '../../../src/mutant';
 
 describe(switchCaseMutantPlacer.name, () => {
   it('should have the correct name', () => {

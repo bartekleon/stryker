@@ -1,7 +1,7 @@
 import assert = require('assert');
 
-import { expect } from 'chai';
-
+import { CheckResult, FailedCheckResult, CheckStatus } from '@stryker-mutator/api/check';
+import { File } from '@stryker-mutator/api/core';
 import {
   MutantRunResult,
   SurvivedMutantRunResult,
@@ -16,8 +16,7 @@ import {
   FailedTestResult,
   TestStatus,
 } from '@stryker-mutator/api/test_runner2';
-import { File } from '@stryker-mutator/api/core';
-import { CheckResult, FailedCheckResult, CheckStatus } from '@stryker-mutator/api/check';
+import { expect } from 'chai';
 
 export function expectKilled(result: MutantRunResult): asserts result is KilledMutantRunResult {
   assert.equal(result.status, MutantRunStatus.Killed);

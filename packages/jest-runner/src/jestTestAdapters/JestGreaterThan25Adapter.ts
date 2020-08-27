@@ -1,10 +1,9 @@
+import { Config } from '@jest/types';
 import { Logger } from '@stryker-mutator/api/logging';
 import { commonTokens, tokens } from '@stryker-mutator/api/plugin';
 
-import { Config } from '@jest/types';
-
-import { jestWrapper } from '../utils/jestWrapper';
 import { JestRunResult } from '../JestRunResult';
+import { jestWrapper } from '../utils/jestWrapper';
 
 import JestTestAdapter from './JestTestAdapter';
 

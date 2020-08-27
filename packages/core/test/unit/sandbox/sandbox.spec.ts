@@ -1,20 +1,19 @@
 import path = require('path');
 
-import execa = require('execa');
-import npmRunPath = require('npm-run-path');
-import { expect } from 'chai';
-import sinon = require('sinon');
-import * as mkdirp from 'mkdirp';
-
-import { testInjector } from '@stryker-mutator/test-helpers';
 import { File } from '@stryker-mutator/api/core';
+import { testInjector } from '@stryker-mutator/test-helpers';
 import { fileAlreadyExistsError } from '@stryker-mutator/test-helpers/src/factory';
 import { normalizeWhitespaces } from '@stryker-mutator/util';
+import { expect } from 'chai';
+import execa = require('execa');
+import * as mkdirp from 'mkdirp';
+import npmRunPath = require('npm-run-path');
+import sinon = require('sinon');
 
-import { Sandbox } from '../../../src/sandbox/sandbox';
 import { coreTokens } from '../../../src/di';
-import { TemporaryDirectory } from '../../../src/utils/TemporaryDirectory';
+import { Sandbox } from '../../../src/sandbox/sandbox';
 import * as fileUtils from '../../../src/utils/fileUtils';
+import { TemporaryDirectory } from '../../../src/utils/TemporaryDirectory';
 
 describe(Sandbox.name, () => {
   let temporaryDirectoryMock: sinon.SinonStubbedInstance<TemporaryDirectory>;

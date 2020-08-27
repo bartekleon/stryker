@@ -1,5 +1,6 @@
 import * as path from 'path';
 
+import { CheckStatus, PassedCheckResult, CheckResult } from '@stryker-mutator/api/check';
 import { Location, Position, StrykerOptions, Mutant } from '@stryker-mutator/api/core';
 import { Logger } from '@stryker-mutator/api/logging';
 import { commonTokens, tokens } from '@stryker-mutator/api/plugin';
@@ -14,16 +15,15 @@ import {
   UndetectedMutantResult,
   KilledMutantResult,
 } from '@stryker-mutator/api/report';
+import { CompleteDryRunResult, MutantRunResult, MutantRunStatus } from '@stryker-mutator/api/test_runner2';
 import { normalizeWhitespaces } from '@stryker-mutator/util';
 import { calculateMetrics } from 'mutation-testing-metrics';
-import { CompleteDryRunResult, MutantRunResult, MutantRunStatus } from '@stryker-mutator/api/test_runner2';
-import { CheckStatus, PassedCheckResult, CheckResult } from '@stryker-mutator/api/check';
 
 import { coreTokens } from '../di';
 import InputFileCollection from '../input/InputFileCollection';
-import { setExitCode } from '../utils/objectUtils';
 import { MutantTestCoverage } from '../mutants/findMutantTestCoverage';
 import { mutatedLines, originalLines } from '../utils/mutantUtils';
+import { setExitCode } from '../utils/objectUtils';
 
 /**
  * A helper class to convert and report mutants that survived or get killed

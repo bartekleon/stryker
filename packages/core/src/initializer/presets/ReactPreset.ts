@@ -1,5 +1,5 @@
-import inquirer = require('inquirer');
 import { StrykerOptions } from '@stryker-mutator/api/core';
+import inquirer = require('inquirer');
 
 import Preset from './Preset';
 import PresetConfiguration from './PresetConfiguration';

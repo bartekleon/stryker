@@ -1,9 +1,8 @@
 import * as path from 'path';
 
 import { testInjector, factory } from '@stryker-mutator/test-helpers';
-import { expect } from 'chai';
-
 import { expectCompleted } from '@stryker-mutator/test-helpers/src/assertions';
+import { expect } from 'chai';
 
 import { createMochaTestRunner, MochaTestRunner } from '../../src';
 

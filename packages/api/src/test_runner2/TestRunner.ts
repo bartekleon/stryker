@@ -1,6 +1,6 @@
-import { DryRunOptions, MutantRunOptions } from './RunOptions';
 import { DryRunResult } from './DryRunResult';
 import { MutantRunResult } from './MutantRunResult';
+import { DryRunOptions, MutantRunOptions } from './RunOptions';
 
 export interface TestRunner2 {
   init?(): Promise<void>;

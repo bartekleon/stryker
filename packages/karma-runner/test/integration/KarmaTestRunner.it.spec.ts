@@ -1,13 +1,13 @@
-import { promisify } from 'util';
 import * as http from 'http';
+import { promisify } from 'util';
 
 import { DryRunStatus, TestStatus, CompleteDryRunResult, TestResult, FailedTestResult } from '@stryker-mutator/api/test_runner2';
 import { testInjector, assertions, factory } from '@stryker-mutator/test-helpers';
 import { expect } from 'chai';
 import { FilePattern } from 'karma';
 
-import KarmaTestRunner from '../../src/KarmaTestRunner';
 import StrykerReporter from '../../src/karma-plugins/StrykerReporter';
+import KarmaTestRunner from '../../src/KarmaTestRunner';
 
 function setOptions(
   files: ReadonlyArray<FilePattern | string> = [

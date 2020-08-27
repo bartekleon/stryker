@@ -1,5 +1,5 @@
-import { MutantCoverage } from './MutantCoverage';
 import { DryRunStatus } from './DryRunStatus';
+import { MutantCoverage } from './MutantCoverage';
 import { TestResult } from './TestResult';
 
 export type DryRunResult = CompleteDryRunResult | TimeoutDryRunResult | ErrorDryRunResult;

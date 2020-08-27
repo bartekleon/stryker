@@ -3,9 +3,8 @@ import * as os from 'os';
 import { MutantStatus } from '@stryker-mutator/api/report';
 import { factory } from '@stryker-mutator/test-helpers';
 import { expect } from 'chai';
-import * as sinon from 'sinon';
-
 import chalk = require('chalk');
+import * as sinon from 'sinon';
 
 import DotsReporter from '../../../src/reporters/DotsReporter';
 

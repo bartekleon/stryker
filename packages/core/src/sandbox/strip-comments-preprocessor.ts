@@ -1,9 +1,9 @@
 import path = require('path');
 
 import { File, StrykerOptions } from '@stryker-mutator/api/core';
-import stripComments = require('strip-comments');
-import minimatch = require('minimatch');
 import { tokens, commonTokens } from '@stryker-mutator/api/plugin';
+import minimatch = require('minimatch');
+import stripComments = require('strip-comments');
 
 import { FilePreprocessor } from './file-preprocessor';
 

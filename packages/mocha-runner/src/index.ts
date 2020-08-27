@@ -3,10 +3,10 @@ import { DirectoryRequireCache } from '@stryker-mutator/util';
 
 import * as strykerValidationSchema from '../schema/mocha-runner-options.json';
 
-import * as pluginTokens from './plugin-tokens';
+import { MochaAdapter } from './MochaAdapter';
 import MochaOptionsLoader from './MochaOptionsLoader';
 import { MochaTestRunner } from './MochaTestRunner';
-import { MochaAdapter } from './MochaAdapter';
+import * as pluginTokens from './plugin-tokens';
 
 createMochaTestRunner.inject = tokens(commonTokens.injector);
 export function createMochaTestRunner(injector: Injector<PluginContext>): MochaTestRunner {

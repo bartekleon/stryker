@@ -1,6 +1,5 @@
-import { MochaOptions } from '../src-generated/mocha-runner-options';
-
 import mochaSchema = require('../schema/mocha-runner-options.json');
+import { MochaOptions } from '../src-generated/mocha-runner-options';
 
 export function serializeMochaLoadOptionsArguments(mochaOptions: MochaOptions): string[] {
   const args: string[] = [];

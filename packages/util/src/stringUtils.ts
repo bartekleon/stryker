@@ -1,5 +1,5 @@
-import { notEmpty } from './notEmpty';
 import { KnownKeys } from './KnownKeys';
+import { notEmpty } from './notEmpty';
 
 /**
  * Consolidates multiple consecutive white spaces into a single space.

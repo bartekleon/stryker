@@ -3,7 +3,6 @@ import { Logger, LoggerFactoryMethod } from '@stryker-mutator/api/logging';
 import { commonTokens, tokens } from '@stryker-mutator/api/plugin';
 import * as karma from 'karma';
 
-import { StrykerKarmaSetup } from '../src-generated/karma-runner-options';
 import {
   TestRunner2,
   TestResult,
@@ -15,13 +14,13 @@ import {
   MutantRunResult,
   toMutantRunResult,
 } from '../../api/test_runner2';
+import { StrykerKarmaSetup } from '../src-generated/karma-runner-options';
 
-import strykerKarmaConf = require('./starters/stryker-karma.conf');
-
-import ProjectStarter from './starters/ProjectStarter';
 import StrykerReporter from './karma-plugins/StrykerReporter';
-import { KarmaRunnerOptionsWithStrykerOptions } from './KarmaRunnerOptionsWithStrykerOptions';
 import TestHooksMiddleware from './karma-plugins/TestHooksMiddleware';
+import { KarmaRunnerOptionsWithStrykerOptions } from './KarmaRunnerOptionsWithStrykerOptions';
+import ProjectStarter from './starters/ProjectStarter';
+import strykerKarmaConf = require('./starters/stryker-karma.conf');
 
 export interface ConfigOptions extends karma.ConfigOptions {
   detached?: boolean;

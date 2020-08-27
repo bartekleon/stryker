@@ -6,8 +6,8 @@ import { expect } from 'chai';
 import * as sinon from 'sinon';
 
 import ConfigReader from '../../../src/config/ConfigReader';
-import { coreTokens } from '../../../src/di';
 import { OptionsValidator } from '../../../src/config/OptionsValidator';
+import { coreTokens } from '../../../src/di';
 
 describe(ConfigReader.name, () => {
   let sut: ConfigReader;

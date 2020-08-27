@@ -1,3 +1,4 @@
+import { ReportType } from '@stryker-mutator/api/core';
 import { mutationTestReportSchema } from '@stryker-mutator/api/report';
 import { testInjector } from '@stryker-mutator/test-helpers';
 import {
@@ -7,7 +8,6 @@ import {
 } from '@stryker-mutator/test-helpers/src/factory';
 import { expect } from 'chai';
 import * as sinon from 'sinon';
-import { ReportType } from '@stryker-mutator/api/core';
 
 import { CIProvider } from '../../../../src/reporters/ci/Provider';
 import DashboardReporter from '../../../../src/reporters/dashboard-reporter/DashboardReporter';
@@ -15,9 +15,9 @@ import {
   default as DashboardReporterClient,
   default as StrykerDashboardClient,
 } from '../../../../src/reporters/dashboard-reporter/DashboardReporterClient';
+import { Report } from '../../../../src/reporters/dashboard-reporter/Report';
 import { dashboardReporterTokens } from '../../../../src/reporters/dashboard-reporter/tokens';
 import { mock, Mock } from '../../../helpers/producers';
-import { Report } from '../../../../src/reporters/dashboard-reporter/Report';
 
 describe(DashboardReporter.name, () => {
   let dashboardClientMock: Mock<StrykerDashboardClient>;

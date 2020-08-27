@@ -1,8 +1,7 @@
 import path = require('path');
 
-import sinon = require('sinon');
-
 import { expect } from 'chai';
+import sinon = require('sinon');
 
 import { DirectoryRequireCache } from '../../src';
 

@@ -1,9 +1,9 @@
 import path = require('path');
 
-import { factory, testInjector } from '@stryker-mutator/test-helpers';
-import { expect } from 'chai';
 import { MutantRunStatus } from '@stryker-mutator/api/test_runner2';
+import { factory, testInjector } from '@stryker-mutator/test-helpers';
 import { assertions } from '@stryker-mutator/test-helpers';
+import { expect } from 'chai';
 
 import JasmineTestRunner, { createJasmineTestRunner } from '../../src/JasmineTestRunner';
 

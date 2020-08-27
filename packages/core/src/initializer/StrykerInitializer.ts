@@ -1,16 +1,16 @@
 import * as child from 'child_process';
 
-import { commonTokens, tokens } from '@stryker-mutator/api/plugin';
 import { Logger } from '@stryker-mutator/api/logging';
+import { commonTokens, tokens } from '@stryker-mutator/api/plugin';
 import { notEmpty } from '@stryker-mutator/util';
 
+import GitignoreWriter from './GitignoreWriter';
 import NpmClient from './NpmClient';
 import { PackageInfo } from './PackageInfo';
 import Preset from './presets/Preset';
 import PromptOption from './PromptOption';
 import StrykerConfigWriter from './StrykerConfigWriter';
 import { StrykerInquirer } from './StrykerInquirer';
-import GitignoreWriter from './GitignoreWriter';
 
 import { initializerTokens } from '.';
 

@@ -1,8 +1,8 @@
 import path = require('path');
 
+import { MutantCoverage } from '@stryker-mutator/api/test_runner2';
 import { testInjector, factory, assertions } from '@stryker-mutator/test-helpers';
 import { expect } from 'chai';
-import { MutantCoverage } from '@stryker-mutator/api/test_runner2';
 
 import { MochaTestRunner, createMochaTestRunner } from '../../src';
 import { createMochaOptions } from '../helpers/factories';

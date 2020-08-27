@@ -1,6 +1,6 @@
-import { tokens, commonTokens, Injector, PluginContext } from '@stryker-mutator/api/plugin';
 import { StrykerOptions } from '@stryker-mutator/api/core';
 import { Logger } from '@stryker-mutator/api/logging';
+import { tokens, commonTokens, Injector, PluginContext } from '@stryker-mutator/api/plugin';
 
 import { JestRunnerOptionsWithStrykerOptions } from '../JestRunnerOptionsWithStrykerOptions';
 import { loaderToken, resolveToken, projectRootToken } from '../pluginTokens';

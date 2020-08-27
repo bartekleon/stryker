@@ -1,11 +1,11 @@
 import os = require('os');
 
-import { expect } from 'chai';
-import { toArray } from 'rxjs/operators';
-import sinon = require('sinon');
 import { factory, tick } from '@stryker-mutator/test-helpers';
 import { Task, ExpirableTask } from '@stryker-mutator/util';
+import { expect } from 'chai';
 import { ReplaySubject } from 'rxjs';
+import { toArray } from 'rxjs/operators';
+import sinon = require('sinon');
 
 import { Pool, Worker } from '../../../src/concurrent';
 

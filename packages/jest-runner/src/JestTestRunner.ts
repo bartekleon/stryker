@@ -1,3 +1,6 @@
+import type * as jestTestResult from '@jest/test-result';
+import type * as jest from '@jest/types';
+import { SerializableError } from '@jest/types/build/TestResult';
 import { StrykerOptions, INSTRUMENTER_CONSTANTS, Mutant } from '@stryker-mutator/api/core';
 import { Logger } from '@stryker-mutator/api/logging';
 import { commonTokens, Injector, PluginContext, tokens } from '@stryker-mutator/api/plugin';
@@ -12,18 +15,14 @@ import {
   TestStatus,
 } from '@stryker-mutator/api/test_runner2';
 import { notEmpty } from '@stryker-mutator/util';
-import type * as jest from '@jest/types';
-import type * as jestTestResult from '@jest/test-result';
 
-import { SerializableError } from '@jest/types/build/TestResult';
-
+import { configLoaderFactory } from './configLoaders';
+import JestConfigLoader from './configLoaders/JestConfigLoader';
+import JEST_OVERRIDE_OPTIONS from './jestOverrideOptions';
+import { JestRunnerOptionsWithStrykerOptions } from './JestRunnerOptionsWithStrykerOptions';
 import { jestTestAdapterFactory } from './jestTestAdapters';
 import JestTestAdapter from './jestTestAdapters/JestTestAdapter';
-import JestConfigLoader from './configLoaders/JestConfigLoader';
 import { configLoaderToken, processEnvToken, jestTestAdapterToken, jestVersionToken } from './pluginTokens';
-import { configLoaderFactory } from './configLoaders';
-import { JestRunnerOptionsWithStrykerOptions } from './JestRunnerOptionsWithStrykerOptions';
-import JEST_OVERRIDE_OPTIONS from './jestOverrideOptions';
 
 export function jestTestRunnerFactory(injector: Injector<PluginContext>) {
   return injector

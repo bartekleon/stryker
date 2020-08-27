@@ -10,12 +10,16 @@ module.exports = {
   extends: ['prettier', 'eslint:recommended'],
   plugins: ['@typescript-eslint', 'prettier', 'import'],
   rules: {
-    'import/newline-after-import': 1,
+    'import/newline-after-import': 'error',
     'import/order': [
-      "error",
+      'error',
       {
-        "newlines-between": "always-and-inside-groups",
-        "groups": ["builtin", "external", "internal", "parent", "sibling", "index"]
+        'newlines-between': 'always-and-inside-groups',
+        'groups': ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+        'alphabetize': {
+          'order': 'asc',
+          'caseInsensitive': true
+        }
       }
     ],
     'prettier/prettier': ['error'],

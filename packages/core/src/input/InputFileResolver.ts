@@ -1,5 +1,5 @@
-import * as path from 'path';
 import { promises as fs } from 'fs';
+import * as path from 'path';
 
 import { File, StrykerOptions } from '@stryker-mutator/api/core';
 import { Logger } from '@stryker-mutator/api/logging';
@@ -7,10 +7,10 @@ import { commonTokens, tokens } from '@stryker-mutator/api/plugin';
 import { SourceFile } from '@stryker-mutator/api/report';
 import { childProcessAsPromised, isErrnoException, normalizeWhitespaces, StrykerError, notEmpty } from '@stryker-mutator/util';
 
+import { defaultOptions } from '../config/OptionsValidator';
 import { coreTokens } from '../di';
 import StrictReporter from '../reporters/StrictReporter';
 import { glob } from '../utils/fileUtils';
-import { defaultOptions } from '../config/OptionsValidator';
 
 import InputFileCollection from './InputFileCollection';
 

@@ -1,10 +1,10 @@
 import { PartialStrykerOptions } from '@stryker-mutator/api/core';
 import { commonTokens, Injector, tokens } from '@stryker-mutator/api/plugin';
 
-import { LogConfigurator } from '../logging';
 import { buildMainInjector, coreTokens, CliOptionsProvider } from '../di';
-import InputFileResolver from '../input/InputFileResolver';
 import { ConfigError } from '../errors';
+import InputFileResolver from '../input/InputFileResolver';
+import { LogConfigurator } from '../logging';
 
 import { MutantInstrumenterContext } from '.';
 

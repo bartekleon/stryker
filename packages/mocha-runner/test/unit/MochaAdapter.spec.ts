@@ -1,12 +1,12 @@
-import path = require('path');
 import fs = require('fs');
+import path = require('path');
 
-import sinon = require('sinon');
-import { expect } from 'chai';
 import { testInjector } from '@stryker-mutator/test-helpers';
+import { expect } from 'chai';
+import sinon = require('sinon');
 
-import { MochaAdapter } from '../../src/MochaAdapter';
 import LibWrapper from '../../src/LibWrapper';
+import { MochaAdapter } from '../../src/MochaAdapter';
 
 describe(MochaAdapter.name, () => {
   let requireStub: sinon.SinonStub;

@@ -1,13 +1,13 @@
+import { Checker } from '@stryker-mutator/api/check';
 import { ClearTextReporterOptions } from '@stryker-mutator/api/core';
+import { TestRunner2 } from '@stryker-mutator/api/test_runner2';
 import { factory } from '@stryker-mutator/test-helpers';
 import { Logger } from 'log4js';
-import * as sinon from 'sinon';
 import { ReplaySubject } from 'rxjs';
-import { TestRunner2 } from '@stryker-mutator/api/test_runner2';
-import { Checker } from '@stryker-mutator/api/check';
+import * as sinon from 'sinon';
 
-import { MutantTestCoverage } from '../../src/mutants/findMutantTestCoverage';
 import { Worker, Pool, ConcurrencyTokenProvider } from '../../src/concurrent';
+import { MutantTestCoverage } from '../../src/mutants/findMutantTestCoverage';
 
 export type Mutable<T> = {
   -readonly [K in keyof T]: T[K];

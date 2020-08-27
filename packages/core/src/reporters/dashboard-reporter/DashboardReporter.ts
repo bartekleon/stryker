@@ -7,8 +7,8 @@ import { calculateMetrics } from 'mutation-testing-metrics';
 import { CIProvider } from '../ci/Provider';
 
 import DashboardReporterClient from './DashboardReporterClient';
-import { dashboardReporterTokens } from './tokens';
 import { Report } from './Report';
+import { dashboardReporterTokens } from './tokens';
 
 export default class DashboardReporter implements Reporter {
   public static readonly inject = tokens(

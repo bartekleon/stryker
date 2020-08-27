@@ -1,16 +1,16 @@
 import { EOL } from 'os';
 
-import { Injector } from 'typed-inject';
-import { factory, testInjector } from '@stryker-mutator/test-helpers';
-import sinon = require('sinon');
 import { TestRunner2, CompleteDryRunResult, ErrorDryRunResult, TimeoutDryRunResult } from '@stryker-mutator/api/test_runner2';
+import { factory, testInjector } from '@stryker-mutator/test-helpers';
 import { expect } from 'chai';
+import sinon = require('sinon');
+import { Injector } from 'typed-inject';
 
-import Timer from '../../../src/utils/Timer';
-import { DryRunExecutor } from '../../../src/process';
+import { ConcurrencyTokenProvider } from '../../../src/concurrent';
 import { coreTokens } from '../../../src/di';
 import { ConfigError } from '../../../src/errors';
-import { ConcurrencyTokenProvider } from '../../../src/concurrent';
+import { DryRunExecutor } from '../../../src/process';
+import Timer from '../../../src/utils/Timer';
 import { createTestRunnerPoolMock, PoolMock } from '../../helpers/producers';
 
 describe(DryRunExecutor.name, () => {

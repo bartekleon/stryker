@@ -1,9 +1,9 @@
 import { InjectableClass, InjectableFunction, InjectionToken } from 'typed-inject';
 
+import { Checker } from '../../check';
 import { Reporter } from '../../report';
 import { TestRunner } from '../../test_runner';
 import { TestRunner2 } from '../../test_runner2';
-import { Checker } from '../../check';
 
 import { PluginContext } from './Contexts';
 import { PluginKind } from './PluginKind';

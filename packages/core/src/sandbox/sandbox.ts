@@ -1,17 +1,17 @@
 import path = require('path');
 
-import execa = require('execa');
-import npmRunPath = require('npm-run-path');
 import { StrykerOptions } from '@stryker-mutator/api/core';
 import { File } from '@stryker-mutator/api/core';
-import { normalizeWhitespaces, I } from '@stryker-mutator/util';
-import * as mkdirp from 'mkdirp';
 import { Logger, LoggerFactoryMethod } from '@stryker-mutator/api/logging';
 import { tokens, commonTokens } from '@stryker-mutator/api/plugin';
+import { normalizeWhitespaces, I } from '@stryker-mutator/util';
+import execa = require('execa');
+import * as mkdirp from 'mkdirp';
+import npmRunPath = require('npm-run-path');
 
-import { TemporaryDirectory } from '../utils/TemporaryDirectory';
-import { findNodeModules, symlinkJunction, writeFile } from '../utils/fileUtils';
 import { coreTokens } from '../di';
+import { findNodeModules, symlinkJunction, writeFile } from '../utils/fileUtils';
+import { TemporaryDirectory } from '../utils/TemporaryDirectory';
 
 interface SandboxFactory {
   (options: StrykerOptions, getLogger: LoggerFactoryMethod, files: readonly File[], tempDir: I<TemporaryDirectory>, exec: typeof execa): Promise<

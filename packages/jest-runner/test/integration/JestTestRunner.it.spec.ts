@@ -1,13 +1,13 @@
 import * as path from 'path';
 
-import { expect } from 'chai';
 import { commonTokens } from '@stryker-mutator/api/plugin';
-import { factory, testInjector, assertions } from '@stryker-mutator/test-helpers';
 import { CompleteDryRunResult, TestStatus } from '@stryker-mutator/api/test_runner2';
+import { factory, testInjector, assertions } from '@stryker-mutator/test-helpers';
+import { expect } from 'chai';
 
-import JestTestRunner, { jestTestRunnerFactory } from '../../src/JestTestRunner';
-import { JestRunnerOptionsWithStrykerOptions } from '../../src/JestRunnerOptionsWithStrykerOptions';
 import { JestOptions } from '../../src-generated/jest-runner-options';
+import { JestRunnerOptionsWithStrykerOptions } from '../../src/JestRunnerOptionsWithStrykerOptions';
+import JestTestRunner, { jestTestRunnerFactory } from '../../src/JestTestRunner';
 import { createJestOptions } from '../helpers/producers';
 
 const paths = require('react-scripts-ts/config/paths');

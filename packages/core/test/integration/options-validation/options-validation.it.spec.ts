@@ -1,6 +1,6 @@
-import { expect } from 'chai';
-import { testInjector } from '@stryker-mutator/test-helpers';
 import { commonTokens } from '@stryker-mutator/api/plugin';
+import { testInjector } from '@stryker-mutator/test-helpers';
+import { expect } from 'chai';
 
 import sinon = require('sinon');
 

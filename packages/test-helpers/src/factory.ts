@@ -1,6 +1,7 @@
-import Ajv = require('ajv');
+import { Checker, CheckResult, CheckStatus, FailedCheckResult } from '@stryker-mutator/api/check';
 import { File, Location, MutationScoreThresholds, StrykerOptions, strykerCoreSchema, WarningOptions, Mutant } from '@stryker-mutator/api/core';
 import { Logger } from '@stryker-mutator/api/logging';
+import { PluginResolver } from '@stryker-mutator/api/plugin';
 import {
   MatchedMutant,
   MutantStatus,
@@ -12,10 +13,6 @@ import {
   TimeoutMutantResult,
 } from '@stryker-mutator/api/report';
 import { RunResult, RunStatus, TestResult, TestStatus } from '@stryker-mutator/api/test_runner';
-import { Metrics, MetricsResult } from 'mutation-testing-metrics';
-import * as sinon from 'sinon';
-import { Injector } from 'typed-inject';
-import { PluginResolver } from '@stryker-mutator/api/plugin';
 import {
   MutantRunOptions,
   DryRunOptions,
@@ -34,7 +31,10 @@ import {
   ErrorMutantRunResult,
   MutantCoverage,
 } from '@stryker-mutator/api/test_runner2';
-import { Checker, CheckResult, CheckStatus, FailedCheckResult } from '@stryker-mutator/api/check';
+import Ajv = require('ajv');
+import { Metrics, MetricsResult } from 'mutation-testing-metrics';
+import * as sinon from 'sinon';
+import { Injector } from 'typed-inject';
 
 const ajv = new Ajv({ useDefaults: true });
 

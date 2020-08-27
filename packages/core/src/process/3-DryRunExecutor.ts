@@ -1,10 +1,9 @@
 import { EOL } from 'os';
 
-import { Injector } from 'typed-inject';
-import { I } from '@stryker-mutator/util';
+import { Checker } from '@stryker-mutator/api/check';
+import { StrykerOptions, Mutant } from '@stryker-mutator/api/core';
 import { Logger } from '@stryker-mutator/api/logging';
 import { commonTokens, tokens } from '@stryker-mutator/api/plugin';
-import { StrykerOptions, Mutant } from '@stryker-mutator/api/core';
 import {
   DryRunResult,
   TestRunner2,
@@ -15,22 +14,22 @@ import {
   FailedTestResult,
   ErrorDryRunResult,
 } from '@stryker-mutator/api/test_runner2';
+import { I } from '@stryker-mutator/util';
 import { first } from 'rxjs/operators';
+import { Injector } from 'typed-inject';
 
-import { Checker } from '@stryker-mutator/api/check';
-
+import { ConcurrencyTokenProvider } from '../concurrent';
+import { Pool, createTestRunnerPool } from '../concurrent/pool';
 import { coreTokens } from '../di';
-import { Sandbox } from '../sandbox/sandbox';
-import Timer from '../utils/Timer';
-import { createTestRunnerFactory } from '../test-runner';
-import { MutationTestReportHelper } from '../reporters/MutationTestReportHelper';
 import { ConfigError } from '../errors';
 import { findMutantTestCoverage } from '../mutants';
-import { Pool, createTestRunnerPool } from '../concurrent/pool';
-import { ConcurrencyTokenProvider } from '../concurrent';
+import { MutationTestReportHelper } from '../reporters/MutationTestReportHelper';
+import { Sandbox } from '../sandbox/sandbox';
+import { createTestRunnerFactory } from '../test-runner';
+import Timer from '../utils/Timer';
 
-import { MutationTestContext } from './4-MutationTestExecutor';
 import { MutantInstrumenterContext } from './2-MutantInstrumenterExecutor';
+import { MutationTestContext } from './4-MutationTestExecutor';
 
 // The initial run might take a while.
 // For example: angular-bootstrap takes up to 45 seconds.
