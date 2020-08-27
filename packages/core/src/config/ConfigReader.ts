@@ -30,6 +30,9 @@ export default class ConfigReader {
     let options: StrykerOptions;
     if (typeof configModule === 'function') {
       options = defaultOptions();
+      options.set = (newConfig: PartialStrykerOptions) => {
+        deepMerge(options, newConfig);
+      };
       configModule(options);
     } else {
       this.validator.validate(configModule);
