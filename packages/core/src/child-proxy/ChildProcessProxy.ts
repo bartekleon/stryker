@@ -1,14 +1,14 @@
 import { ChildProcess, fork } from 'child_process';
 import * as os from 'os';
 
-import { File, StrykerOptions } from '@stryker-mutator/api/core';
+import { StrykerOptions } from '@stryker-mutator/api/core';
 import { PluginContext } from '@stryker-mutator/api/plugin';
 import { isErrnoException, Task, ExpirableTask } from '@stryker-mutator/util';
 import { getLogger } from 'log4js';
 import { Disposable, InjectableClass, InjectionToken } from 'typed-inject';
 
 import { LoggingClientContext } from '../logging';
-import { deserialize, kill, padLeft, serialize } from '../utils/objectUtils';
+import { kill, padLeft } from '../utils/objectUtils';
 import StringBuilder from '../utils/StringBuilder';
 
 import ChildProcessCrashedError from './ChildProcessCrashedError';
@@ -48,7 +48,7 @@ export default class ChildProcessProxy<T> implements Disposable {
     additionalInjectableValues: unknown,
     workingDirectory: string
   ) {
-    this.worker = fork(require.resolve('./ChildProcessProxyWorker'), [autoStart], { silent: true, execArgv: [] });
+    this.worker = fork(require.resolve('./ChildProcessProxyWorker'), [autoStart], { silent: true, serialization: 'json', execArgv: [] });
     this.initTask = new Task();
     this.log.debug('Starting %s in child process %s', requirePath, this.worker.pid);
     this.send({
@@ -83,7 +83,7 @@ export default class ChildProcessProxy<T> implements Disposable {
   }
 
   private send(message: WorkerMessage) {
-    this.worker.send(serialize(message, [File]));
+    this.worker.send(message);
   }
 
   private initProxy(): Promisified<T> {
@@ -122,8 +122,7 @@ export default class ChildProcessProxy<T> implements Disposable {
   }
 
   private listenForMessages() {
-    this.worker.on('message', (serializedMessage: string) => {
-      const message: ParentMessage = deserialize(serializedMessage, [File]);
+    this.worker.on('message', (message: ParentMessage) => {
       switch (message.kind) {
         case ParentMessageKind.Initialized:
           this.initTask.resolve(undefined);
