@@ -10,7 +10,6 @@ import { coreTokens } from '../di';
 import { ConfigError } from '../errors';
 
 import { defaultOptions, OptionsValidator } from './OptionsValidator';
-import { createConfig } from './createConfig';
 
 export const CONFIG_SYNTAX_HELP = `
 /**
@@ -31,7 +30,10 @@ export default class ConfigReader {
     let options: StrykerOptions;
     if (typeof configModule === 'function') {
       options = defaultOptions();
-      configModule(createConfig(options));
+      options.set = (newConfig: PartialStrykerOptions) => {
+        deepMerge(options, newConfig);
+      };
+      configModule(options);
     } else {
       this.validator.validate(configModule);
       options = configModule;
