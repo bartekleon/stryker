@@ -1,14 +1,14 @@
 import { ChildProcess, fork } from 'child_process';
 import * as os from 'os';
 
-import { File, StrykerOptions } from '@stryker-mutator/api/core';
+import { StrykerOptions } from '@stryker-mutator/api/core';
 import { PluginContext } from '@stryker-mutator/api/plugin';
 import { isErrnoException, Task, ExpirableTask } from '@stryker-mutator/util';
 import { getLogger } from 'log4js';
 import { Disposable, InjectableClass, InjectionToken } from 'typed-inject';
 
 import { LoggingClientContext } from '../logging';
-import { deserialize, kill, padLeft, serialize } from '../utils/objectUtils';
+import { kill, padLeft } from '../utils/objectUtils';
 import StringBuilder from '../utils/StringBuilder';
 
 import ChildProcessCrashedError from './ChildProcessCrashedError';
@@ -27,6 +27,8 @@ const BROKEN_PIPE_ERROR_CODE = 'EPIPE';
 const IPC_CHANNEL_CLOSED_ERROR_CODE = 'ERR_IPC_CHANNEL_CLOSED';
 const TIMEOUT_FOR_DISPOSE = 2000;
 
+const UID = () => Math.floor(Math.random() * 0x10000000000).toString(16);
+
 export default class ChildProcessProxy<T> implements Disposable {
   public readonly proxy: Promisified<T>;
 
@@ -39,6 +41,7 @@ export default class ChildProcessProxy<T> implements Disposable {
   private readonly stdoutBuilder = new StringBuilder();
   private readonly stderrBuilder = new StringBuilder();
   private isDisposed = false;
+  private readonly messages = new Map<string, WorkerMessage>();
 
   private constructor(
     requirePath: string,
@@ -83,7 +86,11 @@ export default class ChildProcessProxy<T> implements Disposable {
   }
 
   private send(message: WorkerMessage) {
-    this.worker.send(serialize(message, [File]));
+    const id = UID();
+    this.messages.set(id, message);
+    this.worker.send(id);
+
+    return id;
   }
 
   private initProxy(): Promisified<T> {
@@ -122,8 +129,9 @@ export default class ChildProcessProxy<T> implements Disposable {
   }
 
   private listenForMessages() {
-    this.worker.on('message', (serializedMessage: string) => {
-      const message: ParentMessage = deserialize(serializedMessage, [File]);
+    this.worker.on('message', (messageID: string) => {
+      const message: ParentMessage = (this.messages.get(messageID) as unknown) as ParentMessage;
+
       switch (message.kind) {
         case ParentMessageKind.Initialized:
           this.initTask.resolve(undefined);
