@@ -1,19 +1,20 @@
 import { ChildProcess, fork } from 'child_process';
 import * as os from 'os';
 
-import { File, StrykerOptions } from '@stryker-mutator/api/core';
+import { StrykerOptions } from '@stryker-mutator/api/core';
 import { PluginContext } from '@stryker-mutator/api/plugin';
 import { isErrnoException, Task, ExpirableTask } from '@stryker-mutator/util';
 import { getLogger } from 'log4js';
 import { Disposable, InjectableClass, InjectionToken } from 'typed-inject';
 
 import { LoggingClientContext } from '../logging';
-import { deserialize, kill, padLeft, serialize } from '../utils/objectUtils';
+import { kill, padLeft } from '../utils/objectUtils';
 import StringBuilder from '../utils/StringBuilder';
 
 import ChildProcessCrashedError from './ChildProcessCrashedError';
 import { autoStart, ParentMessage, ParentMessageKind, WorkerMessage, WorkerMessageKind } from './messageProtocol';
 import OutOfMemoryError from './OutOfMemoryError';
+import ChildProxyMemory from './ChildProxyMemory';
 
 type Func<TS extends any[], R> = (...args: TS) => R;
 
@@ -26,6 +27,14 @@ export type Promisified<T> = {
 const BROKEN_PIPE_ERROR_CODE = 'EPIPE';
 const IPC_CHANNEL_CLOSED_ERROR_CODE = 'ERR_IPC_CHANNEL_CLOSED';
 const TIMEOUT_FOR_DISPOSE = 2000;
+
+export function uuidv4() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+    const r = (Math.random() * 16) | 0,
+      v = c == 'x' ? r : (r & 0x3) | 0x8;
+    return v.toString(16);
+  });
+}
 
 export default class ChildProcessProxy<T> implements Disposable {
   public readonly proxy: Promisified<T>;
@@ -83,7 +92,9 @@ export default class ChildProcessProxy<T> implements Disposable {
   }
 
   private send(message: WorkerMessage) {
-    this.worker.send(serialize(message, [File]));
+    const id = uuidv4();
+    ChildProxyMemory.set(id, message);
+    this.worker.send(id);
   }
 
   private initProxy(): Promisified<T> {
@@ -122,8 +133,9 @@ export default class ChildProcessProxy<T> implements Disposable {
   }
 
   private listenForMessages() {
-    this.worker.on('message', (serializedMessage: string) => {
-      const message: ParentMessage = deserialize(serializedMessage, [File]);
+    this.worker.on('message', (messageID: string) => {
+      const message: ParentMessage = (ChildProxyMemory.get(messageID) as unknown) as ParentMessage;
+
       switch (message.kind) {
         case ParentMessageKind.Initialized:
           this.initTask.resolve(undefined);

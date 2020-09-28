@@ -1,14 +1,14 @@
 import * as path from 'path';
 
-import { File } from '@stryker-mutator/api/core';
 import { errorToString } from '@stryker-mutator/util';
 import { getLogger, Logger } from 'log4js';
 
 import { buildChildProcessInjector } from '../di';
 import { LogConfigurator } from '../logging';
-import { deserialize, serialize } from '../utils/objectUtils';
 
 import { autoStart, CallMessage, ParentMessage, ParentMessageKind, WorkerMessage, WorkerMessageKind, InitMessage } from './messageProtocol';
+import { uuidv4 } from './ChildProcessProxy';
+import ChildProxyMemory from './ChildProxyMemory';
 
 export default class ChildProcessProxyWorker {
   private log: Logger;
@@ -23,12 +23,13 @@ export default class ChildProcessProxyWorker {
 
   private send(value: ParentMessage) {
     if (process.send) {
-      const str = serialize(value, [File]);
-      process.send(str);
+      const id = uuidv4();
+      ChildProxyMemory.set(id, (value as unknown) as WorkerMessage);
+      process.send(id);
     }
   }
-  private handleMessage(serializedMessage: string) {
-    const message = deserialize<WorkerMessage>(serializedMessage, [File]);
+  private handleMessage(messageID: string) {
+    const message = (ChildProxyMemory.get(messageID) as unknown) as WorkerMessage;
     switch (message.kind) {
       case WorkerMessageKind.Init:
         this.handleInit(message);
